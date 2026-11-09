@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gokul C++ Codes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+    font-family: Arial;
+    background: #f1f3f5;
+    padding: 20px;
+}
+.card {
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+}
+button {
+    background: #087dca;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+}
+pre {
+    background: #eeeeee;
+    padding: 12px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Gokul C++ Practical Programs</h2>
+
+<div class="card">
+<h3>Code 1 - Linear & Binary Search</h3>
+
+<pre id="code">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+void linearSearch(int arr[], int n, int key)
+{
+    int comparisons = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        comparisons++;
+
+        if (arr[i] == key)
+        {
+            cout << "\nStudent attended the session.";
+            cout << "\nPosition: " << i + 1;
+            cout << "\nTotal Comparisons = " << comparisons << endl;
+            return;
+        }
+    }
+
+    cout << "\nStudent did not attend the session.";
+    cout << "\nTotal Comparisons = " << comparisons << endl;
+}
+
+void binarySearch(int arr[], int n, int key)
+{
+    sort(arr, arr + n);
+
+    int low = 0;
+    int high = n - 1;
+    int comparisons = 0;
+
+    while (low <= high)
+    {
+        comparisons++;
+        int mid = (low + high) / 2;
+
+        if (arr[mid] == key)
+        {
+            cout << "\nStudent attended the session.";
+            cout << "\nPosition in sorted array: " << mid + 1;
+            cout << "\nTotal Comparisons = " << comparisons << endl;
+            return;
+        }
+        else if (key > arr[mid])
+        {
+            low = mid + 1;
+        }
+        else
+        {
+            high = mid - 1;
+        }
+    }
+
+    cout << "\nStudent did not attend the session.";
+    cout << "\nTotal Comparisons = " << comparisons << endl;
+}
+
+int main()
+{
+    int n, choice, key;
+
+    cout << "Enter number of students: ";
+    cin >> n;
+
+    int arr[100];
+
+    cout << "Enter Roll Numbers:\n";
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+
+    do
+    {
+        cout << "\n----- MENU -----";
+        cout << "\n1. Linear Search";
+        cout << "\n2. Binary Search";
+        cout << "\n3. Exit";
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+            case 1:
+                cout << "Enter roll number to search: ";
+                cin >> key;
+                linearSearch(arr, n, key);
+                break;
+
+            case 2:
+                cout << "Enter roll number to search: ";
+                cin >> key;
+                binarySearch(arr, n, key);
+                break;
+
+            case 3:
+                cout << "\nProgram Terminated.";
+                break;
+
+            default:
+                cout << "\nInvalid Choice!";
+        }
+
+    } while (choice != 3);
+
+    return 0;
+}</pre>
+
+<button onclick="navigator.clipboard.writeText(document.getElementById('code').innerText).then(()=>alert('Code Copied!'))">
+Copy Code
+</button>
+</div>
+
+</body>
+  </html>
+                  
